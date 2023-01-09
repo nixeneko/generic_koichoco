@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<title>ジェネリック恋チョコ</title>
+<style>
+#mytitle { 
+  font-size: 5rem;
+  text-align: center;
+}
+#mytitle small{
+  font-size: 3.5rem;
+}
+#mytitle ruby rt{
+  font-size: 2rem;
+}
+.btn {
+  border-radius: 15px;
+  background-color: #1d9bf0;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: white;
+}
+</style>
+<script src="data.js"></script>
+</head>
+<body>
+<h1 id="mytitle"></h1>
+<a href="" id="tweet" class="btn" target=_blank>Tweet</a>
+<script>
+function parseruby(text){
+  const idx = text.indexOf('|');
+  if (idx == -1) return text; //ルビがない場合
+  //ルビがある場合
+  const pair = text.split('|');
+  return "<ruby>"+pair[0]+"<rp>(</rp><rt>"+pair[1]+"</rt><rp>)</rp>";
+}
+二拍語 = words_2mora[Math.floor(Math.random() * words_2mora.length)];
+三拍語 = words_3mora[Math.floor(Math.random() * words_3mora.length)];
+五拍語 = words_5mora[Math.floor(Math.random() * words_5mora.length)];
+document.getElementById("mytitle").innerHTML = parseruby(二拍語) + "<small>と</small>" + parseruby(三拍語) + "<small>と</small>" + parseruby(五拍語);
+document.getElementById("tweet").href = encodeURI("https://twitter.com/intent/tweet?hashtags=ジェネリック恋チョコ&text=" + document.getElementById("mytitle").textContent);
+</script>
+</body>
+</html>
