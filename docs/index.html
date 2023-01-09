@@ -9,6 +9,9 @@
   font-size: 4rem;
   text-align: center;
 }
+#mytitle span {
+   display: inline-block;
+}
 #mytitle small{
   font-size: 2.6rem;
 }
@@ -39,7 +42,9 @@ function parseruby(text){
 二拍語 = words_2mora[Math.floor(Math.random() * words_2mora.length)];
 三拍語 = words_3mora[Math.floor(Math.random() * words_3mora.length)];
 五拍語 = words_5mora[Math.floor(Math.random() * words_5mora.length)];
-document.getElementById("mytitle").innerHTML = parseruby(二拍語) + "<small>と</small>" + parseruby(三拍語) + "<small>と</small>" + parseruby(五拍語);
+document.getElementById("mytitle").innerHTML = "<span>" + parseruby(二拍語) + "<small>と</small></span>"
+                                             + "<span>" + parseruby(三拍語) + "<small>と</small></span>"
+											 + "<span>" + parseruby(五拍語) + "</span>";
 document.getElementById("tweet").href = encodeURI("https://twitter.com/intent/tweet?hashtags=ジェネリック恋チョコ&text=" + document.getElementById("mytitle").textContent + "&url=https://nixeneko.github.io/generic_koichoco/");
 </script>
 </body>
