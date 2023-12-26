@@ -20,17 +20,27 @@
 }
 .btn {
   border-radius: 15px;
-  background-color: #1d9bf0;
   padding: 5px 10px;
   text-decoration: none;
+  cursor: pointer;
+}
+.tweet {
   color: white;
+  background-color: #1d9bf0;
+}
+.copy {
+  color: white;
+  background-color: gray;
 }
 </style>
 <script src="data.js"></script>
 </head>
 <body>
 <h1 id="mytitle"></h1>
-<a href="" id="tweet" class="btn" target=_blank>Tweet</a>
+<div style="text-align:center;">
+<a href="" id="tweet" class="btn tweet" target=_blank>Tweet</a>
+<span id="copy" class="btn copy">Copy</span>
+</div>
 <script>
 function parseruby(text){
   const idx = text.indexOf('|');
@@ -45,7 +55,20 @@ function parseruby(text){
 document.getElementById("mytitle").innerHTML = "<span>" + parseruby(二拍語) + "<small>と</small></span>"
                                              + "<span>" + parseruby(三拍語) + "<small>と</small></span>"
 											 + "<span>" + parseruby(五拍語) + "</span>";
-document.getElementById("tweet").href = encodeURI("https://twitter.com/intent/tweet?hashtags=ジェネリック恋チョコ&text=" + document.getElementById("mytitle").textContent + "&url=https://nixeneko.github.io/generic_koichoco/");
+const generated_title = document.getElementById("mytitle").textContent;
+document.getElementById("tweet").href = encodeURI("https://twitter.com/intent/tweet?hashtags=ジェネリック恋チョコ&text=" + generated_title + "&url=https://nixeneko.github.io/generic_koichoco/");
+
+document.getElementById("copy").addEventListener("click", () => {
+  const copy_text = generated_title + " https://nixeneko.github.io/generic_koichoco/ #ジェネリック恋チョコ"
+  navigator.clipboard.writeText(copy_text).then(() => {
+    /* clipboard successfully set */
+    console.log("copied");
+  }, () => {
+    /* clipboard write failed */
+	console.log("copy failed");
+  });
+});
+
 </script>
 </body>
 </html>
